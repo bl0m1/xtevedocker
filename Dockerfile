@@ -5,13 +5,13 @@ MAINTAINER Hugo Blom hugo.blom1@gmail.com
 RUN apk add ca-certificates unzip
 
 # Add xteve binary
-ADD https://xteve.de/download/xteve_2_linux_amd64.zip /xteve/xteve_amd64.zip
+ADD https://xteve.de/download/xteve_2_linux_amd64.zip /tmp/xteve_amd64.zip
 
 # Unzip the Binary
-RUN unzip -o /xteve/xteve_amd64.zip
+RUN unzip -o /tmp/xteve_amd64.zip -d /xteve
 
 # Clean up the .zip
-RUN rm -y /xteve/xteve.zip
+RUN rm -y /tmp/xteve.zip
 
 # Set executable permissions
 RUN chmod +x /xteve/xteve
