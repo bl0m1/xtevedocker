@@ -8,7 +8,7 @@ RUN apk add ca-certificates unzip
 ADD https://xteve.de/download/xteve_2_linux_amd64.zip /xteve/xteve_amd64.zip
 
 # Unzip the Binary
-RUN unzip -y /xteve/xteve_amd64.zip
+RUN unzip -o /xteve/xteve_amd64.zip
 
 # Clean up the .zip
 RUN rm -y /xteve/xteve.zip
