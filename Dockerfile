@@ -11,7 +11,7 @@ ADD https://xteve.de/download/xteve_2_linux_amd64.zip /tmp/xteve_amd64.zip
 RUN unzip -o /tmp/xteve_amd64.zip -d /xteve
 
 # Clean up the .zip
-RUN rm -y /tmp/xteve.zip
+RUN rm /tmp/xteve.zip
 
 # Set executable permissions
 RUN chmod +x /xteve/xteve
