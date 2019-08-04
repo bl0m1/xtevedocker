@@ -2,7 +2,7 @@ FROM alpine:3.10.1
 MAINTAINER Hugo Blom hugo.blom1@gmail.com
 
 # Dependencies
-RUN apk add ca-certificates unzip
+RUN apk add ca-certificates curl unzip
 
 # Add xteve binary
 ADD https://xteve.de/download/xteve_2_linux_amd64.zip /tmp/xteve_amd64.zip
