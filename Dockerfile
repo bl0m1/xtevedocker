@@ -1,23 +1,30 @@
-FROM alpine:3.10.1
-MAINTAINER Hugo Blom hugo.blom1@gmail.com
+FROM alpine:3.11.2
+LABEL maintainer="Hugo Blom <hugo.blom1@gmail.com>"
 
 # Dependencies
-RUN apk add ca-certificates curl unzip
+RUN apk add curl vlc ffmpeg
 
 # Add xteve binary
-ADD https://xteve.de/download/xteve_2_linux_amd64.zip /tmp/xteve_amd64.zip
+ADD https://github.com/xteve-project/xTeVe-Downloads/raw/master/xteve_linux_amd64.zip /tmp/xteve_linux_amd64.zip
 
 # Unzip the Binary
-RUN unzip -o /tmp/xteve_amd64.zip -d /xteve
+RUN mkdir -p /xteve
+RUN unzip -o /tmp/xteve_linux_amd64.zip -d /xteve
 
 # Clean up the .zip
-RUN rm /tmp/xteve_amd64.zip
+RUN rm /tmp/xteve_linux_amd64.zip
 
 # Set executable permissions
 RUN chmod +x /xteve/xteve
 
+# Add user for VLC and ffmpeg
+RUN addgroup -S xteve && adduser -S xteve -G xteve
+
+# Set user contexts
+USER xteve
+
 # Volumes
-VOLUME /root/.xteve
+VOLUME /home/xteve/.xteve
 VOLUME /tmp/xteve
 
 # Expose Ports for Access
