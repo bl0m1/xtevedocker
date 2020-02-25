@@ -14,11 +14,12 @@ RUN unzip -o /tmp/xteve_linux_amd64.zip -d /xteve
 # Clean up the .zip
 RUN rm /tmp/xteve_linux_amd64.zip
 
-# Set executable permissions
-RUN chmod +x /xteve/xteve
-
 # Add user for VLC and ffmpeg
 RUN addgroup -S xteve && adduser -S xteve -G xteve
+
+# Set executable permissions
+RUN chmod +x /xteve/xteve
+RUN chown xteve:xteve /xteve/xteve
 
 # Set user contexts
 USER xteve
@@ -42,7 +43,7 @@ EXPOSE 34400
 # Healthcheck
 HEALTHCHECK --interval=30s --start-period=30s --retries=3 --timeout=10s \
   CMD curl -f http://localhost:34400/ || exit 1
-  
+
 # Entrypoint should be the base command
 ENTRYPOINT ["/xteve/xteve"]
 
