@@ -2,7 +2,7 @@ FROM alpine:3.11.2
 LABEL maintainer="Hugo Blom <hugo.blom1@gmail.com>"
 
 # Dependencies
-RUN apk add curl vlc ffmpeg
+RUN apk add curl vlc ffmpeg tzdata bash
 
 # Add xteve binary
 ADD https://github.com/xteve-project/xTeVe-Downloads/raw/master/xteve_linux_amd64.zip /tmp/xteve_linux_amd64.zip
