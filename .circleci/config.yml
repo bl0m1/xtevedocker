@@ -8,7 +8,7 @@ jobs:
    steps:
      - checkout
      - run: docker build . --file Dockerfile --tag docker.pkg.github.com/bl0m1/xtevedocker/xtevedocker:ci-latest
-     - run: docker login -u="bl0m1" -p=$DOCKER_TOKEN docker.pkg.github.com
+     - run: echo "$DOCKER_PASS" | docker login --username bl0m1 --password-stdin
      - run: docker push docker.pkg.github.com/bl0m1/xtevedocker/xtevedocker:ci-latest
 test:
   working_directory: /xteve
