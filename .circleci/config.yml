@@ -15,7 +15,12 @@ jobs:
     docker:
       - image: hadolint/hadolint
     steps:
-      - run: ls
+      - checkout
+      - run pwd
+      - run: 
+        name: Run hadolint on dockerfile
+        command: hadolint Dockerfile
+        
   test:
     working_directory: /xteve
     docker:
