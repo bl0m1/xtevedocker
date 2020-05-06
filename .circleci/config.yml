@@ -18,8 +18,8 @@ jobs:
       - checkout
       - run pwd
       - run: 
-        name: Run hadolint on dockerfile
-        command: hadolint Dockerfile
+          name: Run hadolint on dockerfile
+          command: hadolint Dockerfile
         
   test:
     working_directory: /xteve
