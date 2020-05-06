@@ -18,7 +18,6 @@ jobs:
           username: bl0m1
           password: $DOCKER_PASS
     steps:
-      - run: sleep 10
       - run: ls
   test2:
     working_directory: /xteve
@@ -28,7 +27,6 @@ jobs:
           username: bl0m1
           password: $DOCKER_PASS
     steps:
-      - run: sleep 10
       - run: ls
   test3:
     working_directory: /xteve
@@ -38,12 +36,11 @@ jobs:
           username: bl0m1
           password: $DOCKER_PASS
     steps:
-      - run: sleep 10
       - run: ls
   clean:
     machine: true
     steps:
-      - run: curl -u bl0m1:"$DOCKER_PASS" -vk -X DELETE docker.pkg.github.com/bl0m1/xtevedocker/xtevedocker:ci-latest
+      - run: curl -u bl0m1:$DOCKER_PASS -vk -X DELETE docker.pkg.github.com/bl0m1/xtevedocker/xtevedocker:ci-latest
 workflows:
   version: 2
   build_and_test:
