@@ -16,13 +16,13 @@ jobs:
     machine: true
     steps:
       - checkout
-      - run: docker build . --file Dockerfile --tag docker.pkg.github.com/bl0m1/xtevedocker/xtevedocker:ci-latest
-      - run: echo "$DOCKER_PASS" | docker login docker.pkg.github.com --username bl0m1 --password-stdin
-      - run: docker push docker.pkg.github.com/bl0m1/xtevedocker/xtevedocker:ci-latest
+      - run: docker build . --file Dockerfile --tag bl0m1/xtevedocker-ci:$
+      - run: echo "$DOCKER_PASS" | docker login --username bl0m1 --password-stdin
+      - run: docker push bl0m1/xtevedocker-ci:ci-latest
   test:
     working_directory: /xteve
     docker:
-      - image: docker.pkg.github.com/bl0m1/xtevedocker/xtevedocker:ci-latest
+      - image: bl0m1/xtevedocker-ci:ci-latest
         auth:
           username: bl0m1
           password: $DOCKER_PASS
