@@ -10,13 +10,10 @@ jobs:
       - run: docker build . --file Dockerfile --tag docker.pkg.github.com/bl0m1/xtevedocker/xtevedocker:ci-latest
       - run: echo "$DOCKER_PASS" | docker login docker.pkg.github.com --username bl0m1 --password-stdin
       - run: docker push docker.pkg.github.com/bl0m1/xtevedocker/xtevedocker:ci-latest
-  docker-lint:
+  docker_lint:
     working_directory: /xteve
     docker:
       - image: hadolint/hadolint
-        auth:
-          username: bl0m1
-          password: $DOCKER_PASS
     steps:
       - run: ls
   test:
