@@ -27,7 +27,7 @@ jobs:
           username: bl0m1
           password: $DOCKER_PASS
     steps:
-      - run: xteve -info
+      - run: ./xteve -info
       - run: cat /home/xteve/.xteve/settings.json
 
 workflows:
@@ -41,3 +41,4 @@ workflows:
       - test:
           requires:
             - docker_lint
+            - build
