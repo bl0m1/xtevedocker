@@ -27,7 +27,8 @@ jobs:
           username: bl0m1
           password: $DOCKER_PASS
     steps:
-      - run: ls
+      - run: xteve -info
+      - run: cat /home/xteve/.xteve/settings.json
 
 workflows:
   version: 2
