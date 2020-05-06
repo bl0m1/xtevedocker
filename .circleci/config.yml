@@ -18,6 +18,27 @@ jobs:
           username: bl0m1
           password: $DOCKER_PASS
     steps:
+      - run: sleep 10
+      - run: ls
+  test2:
+    working_directory: /xteve
+    docker:
+      - image: docker.pkg.github.com/bl0m1/xtevedocker/xtevedocker:ci-latest
+        auth:
+          username: bl0m1
+          password: $DOCKER_PASS
+    steps:
+      - run: sleep 10
+      - run: ls
+  test:
+    working_directory: /xteve
+    docker:
+      - image: docker.pkg.github.com/bl0m1/xtevedocker/xtevedocker:ci-latest
+        auth:
+          username: bl0m1
+          password: $DOCKER_PASS
+    steps:
+      - run: sleep 10
       - run: ls
 workflows:
   version: 2
@@ -27,9 +48,9 @@ workflows:
       - test:
           requires:
             - build
-      - test:
+      - test2:
           requires:
             - build
-      - test:
+      - test3:
           requires:
             - build
