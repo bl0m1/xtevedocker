@@ -3,15 +3,8 @@ version: 2.1
 # Use a package of configuration called an orb.
 
 jobs:
-  build:
-    machine: true
-    steps:
-      - checkout
-      - run: docker build . --file Dockerfile --tag docker.pkg.github.com/bl0m1/xtevedocker/xtevedocker:ci-latest
-      - run: echo "$DOCKER_PASS" | docker login docker.pkg.github.com --username bl0m1 --password-stdin
-      - run: docker push docker.pkg.github.com/bl0m1/xtevedocker/xtevedocker:ci-latest
   docker_lint:
-    working_directory: /xteve
+    working_directory: /root/project
     docker:
       - image: hadolint/hadolint
     steps:
@@ -20,7 +13,13 @@ jobs:
       - run: 
           name: Run hadolint on dockerfile
           command: hadolint Dockerfile
-        
+  build:
+    machine: true
+    steps:
+      - checkout
+      - run: docker build . --file Dockerfile --tag docker.pkg.github.com/bl0m1/xtevedocker/xtevedocker:ci-latest
+      - run: echo "$DOCKER_PASS" | docker login docker.pkg.github.com --username bl0m1 --password-stdin
+      - run: docker push docker.pkg.github.com/bl0m1/xtevedocker/xtevedocker:ci-latest
   test:
     working_directory: /xteve
     docker:
@@ -42,4 +41,3 @@ workflows:
       - test:
           requires:
             - docker_lint
-
