@@ -2,7 +2,7 @@ FROM alpine:3.11.6
 LABEL maintainer="Hugo Blom <hugo.blom1@gmail.com>"
 
 # Dependencies
-RUN apk --no-cache add curl=7.55.0-r2 vlc=2.2.4-r0 ffmpeg=2.8.11-r0 tzdata=2015g-r0 bash=4.3.42-r6
+RUN apk --no-cache add curl=7.67.0-r0 vlc=3.0.8-r7 ffmpeg=4.2.1-r3 tzdata=2020a-r0 bash=5.0.11-r1
 
 # Remove APK cache
 RUN rm -rf /var/cache/apk/*
