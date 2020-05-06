@@ -10,6 +10,15 @@ jobs:
       - run: docker build . --file Dockerfile --tag docker.pkg.github.com/bl0m1/xtevedocker/xtevedocker:ci-latest
       - run: echo "$DOCKER_PASS" | docker login docker.pkg.github.com --username bl0m1 --password-stdin
       - run: docker push docker.pkg.github.com/bl0m1/xtevedocker/xtevedocker:ci-latest
+  docker-lint:
+    working_directory: /xteve
+    docker:
+      - image: hadolint/hadolint
+        auth:
+          username: bl0m1
+          password: $DOCKER_PASS
+    steps:
+      - run: ls
   test:
     working_directory: /xteve
     docker:
@@ -19,44 +28,16 @@ jobs:
           password: $DOCKER_PASS
     steps:
       - run: ls
-  test2:
-    working_directory: /xteve
-    docker:
-      - image: docker.pkg.github.com/bl0m1/xtevedocker/xtevedocker:ci-latest
-        auth:
-          username: bl0m1
-          password: $DOCKER_PASS
-    steps:
-      - run: ls
-  test3:
-    working_directory: /xteve
-    docker:
-      - image: docker.pkg.github.com/bl0m1/xtevedocker/xtevedocker:ci-latest
-        auth:
-          username: bl0m1
-          password: $DOCKER_PASS
-    steps:
-      - run: ls
-  clean:
-    machine: true
-    steps:
-      - run: curl -u bl0m1:$DOCKER_PASS -vk -X DELETE https://docker.pkg.github.com/bl0m1/xtevedocker/xtevedocker:ci-latest
+
 workflows:
   version: 2
   build_and_test:
     jobs:
-      - build
+      - docker_lint
+      - build:
+          requires:
+            - docker_lint
       - test:
           requires:
-            - build
-      - test2:
-          requires:
-            - build
-      - test3:
-          requires:
-            - build
-      - clean:
-          requires:
-            - test
-            - test2
-            - test3
+            - docker_lint
+
