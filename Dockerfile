@@ -5,7 +5,7 @@ LABEL maintainer="Hugo Blom <hugo.blom1@gmail.com>"
 RUN apk --no-cache add curl=7.67.0-r0 vlc=3.0.8-r7 ffmpeg=4.2.1-r3 tzdata=2020a-r0 bash=5.0.11-r1
 
 # Verify if any later versions exists
-RUN apk version
+RUN apk update && apk version
 
 # Remove APK cache
 RUN rm -rf /var/cache/apk/*
