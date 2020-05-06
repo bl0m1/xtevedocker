@@ -23,12 +23,10 @@ jobs:
     working_directory: /xteve
     docker:
       - image: bl0m1/xtevedocker-ci:ci-latest
-        auth:
-          username: bl0m1
-          password: $DOCKER_PASS
     steps:
       - run: ./xteve -info
       - run: cat /home/xteve/.xteve/settings.json
+      - run: apk version
 
 workflows:
   version: 2
@@ -40,5 +38,4 @@ workflows:
             - docker_lint
       - test:
           requires:
-            - docker_lint
             - build
