@@ -30,7 +30,7 @@ jobs:
     steps:
       - run: sleep 10
       - run: ls
-  test:
+  test3:
     working_directory: /xteve
     docker:
       - image: docker.pkg.github.com/bl0m1/xtevedocker/xtevedocker:ci-latest
