@@ -14,6 +14,9 @@ jobs:
     working_directory: /xteve
     docker:
       - image: docker.pkg.github.com/bl0m1/xtevedocker/xtevedocker:ci-latest
+        auth:
+          username: bl0m1
+          password: $DOCKER_PASS
     steps:
       - run: ls
 workflows:
