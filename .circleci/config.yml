@@ -9,7 +9,6 @@ jobs:
       - image: hadolint/hadolint
     steps:
       - checkout
-      - run pwd
       - run: 
           name: Run hadolint on dockerfile
           command: hadolint Dockerfile
