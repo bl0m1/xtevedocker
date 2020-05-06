@@ -3,16 +3,23 @@ version: 2.1
 # Use a package of configuration called an orb.
 
 jobs:
- build:
-   machine: true
-   steps:
-     - checkout
-     - run: docker build . --file Dockerfile --tag docker.pkg.github.com/bl0m1/xtevedocker/xtevedocker:ci-latest
-     - run: echo "$DOCKER_PASS" | docker login docker.pkg.github.com --username bl0m1 --password-stdin
-     - run: docker push docker.pkg.github.com/bl0m1/xtevedocker/xtevedocker:ci-latest
-test:
-  working_directory: /xteve
-  docker:
-    - image: docker.pkg.github.com/bl0m1/xtevedocker/xtevedocker:ci-latest
-  steps:
-    - run: ls
+  build:
+    machine: true
+    steps:
+      - checkout
+      - run: docker build . --file Dockerfile --tag docker.pkg.github.com/bl0m1/xtevedocker/xtevedocker:ci-latest
+      - run: echo "$DOCKER_PASS" | docker login docker.pkg.github.com --username bl0m1 --password-stdin
+      - run: docker push docker.pkg.github.com/bl0m1/xtevedocker/xtevedocker:ci-latest
+  test:
+    working_directory: /xteve
+    docker:
+      - image: docker.pkg.github.com/bl0m1/xtevedocker/xtevedocker:ci-latest
+    steps:
+      - run: ls
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - test
+
