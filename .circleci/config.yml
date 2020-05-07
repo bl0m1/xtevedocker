@@ -22,7 +22,7 @@ jobs:
             tar xfz md-proofer-*.tar.gz
             sudo chmod +x ./md-proofer
             echo "===================================================================================="
-            ./md-proofer lint
+            ./md-proofer lint .
   build:
     machine: true
     steps:
