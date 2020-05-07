@@ -16,13 +16,14 @@ jobs:
     machine: true
     steps:
       - run:
-          name: Test Markdown Files
+          name: Install md-proofer
           command: |
             wget https://github.com/felicianotech/md-proofer/releases/download/v0.3.0/md-proofer--v0.3.0--linux-amd64.tar.gz
             tar xfz md-proofer-*.tar.gz
             sudo chmod +x ./md-proofer
-            echo "===================================================================================="
-            find . -type f -name '*.md' | xargs ./md-proofer lint
+      - run:
+          name: Test Markdown Files
+          command: ./md-proofer lint .
   build:
     machine: true
     steps:
