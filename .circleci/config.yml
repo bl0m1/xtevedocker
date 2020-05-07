@@ -12,6 +12,15 @@ jobs:
       - run: 
           name: Run hadolint on dockerfile
           command: hadolint Dockerfile
+      - run:
+          name: "Test Markdown Files"
+          ommand: |
+            wget https://github.com/felicianotech/md-proofer/releases/download/v0.3.0/md-proofer--v0.3.0--linux-amd64.tar.gz
+            tar xfz md-proofer-v*.tar.gz
+            sudo chmod +x ./md-proofer
+            echo "Test Markdown files"
+            echo "===================================================================================="
+            ./md-proofer lint
   build:
     machine: true
     steps:
