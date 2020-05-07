@@ -48,6 +48,7 @@ workflows:
       - build:
           requires:
             - docker_lint
+            - md_lint
       - test:
           requires:
             - build
