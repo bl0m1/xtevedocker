@@ -22,7 +22,7 @@ jobs:
             tar xfz md-proofer-*.tar.gz
             sudo chmod +x ./md-proofer
             echo "===================================================================================="
-            find . -type f -name '*.md' | xargs md-proofer lint
+            find . -type f -name '*.md' | xargs ./md-proofer lint
   build:
     machine: true
     steps:
