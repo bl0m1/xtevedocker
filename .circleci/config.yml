@@ -10,6 +10,7 @@ jobs:
   build:
     machine: true
     steps:
+      - run: echo "This is pipeline ID << pipeline.id >>"
       - checkout
       - run: docker build . --file Dockerfile --tag bl0m1/xtevedocker-ci:ci-latest
       - run: echo "$DOCKER_PASS" | docker login --username bl0m1 --password-stdin
