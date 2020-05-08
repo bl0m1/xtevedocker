@@ -10,15 +10,14 @@ jobs:
   build:
     machine: true
     steps:
-      - run: echo "This is pipeline number << pipeline.number >>"
       - checkout
-      - run: docker build . --file Dockerfile --tag bl0m1/xtevedocker-ci:ci-latest
+      - run: docker build . --file Dockerfile --tag bl0m1/xtevedocker-ci:<< pipeline.number >>
       - run: echo "$DOCKER_PASS" | docker login --username bl0m1 --password-stdin
-      - run: docker push bl0m1/xtevedocker-ci:ci-latest
+      - run: docker push bl0m1/xtevedocker-ci:<< pipeline.number >>
   test:
     working_directory: /xteve
     docker:
-      - image: bl0m1/xtevedocker-ci:ci-latest
+      - image: bl0m1/xtevedocker-ci:<< pipeline.number >>
     steps:
       - run: ./xteve -info
       - run: cat /home/xteve/.xteve/settings.json
