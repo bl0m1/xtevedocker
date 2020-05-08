@@ -4,7 +4,7 @@ version: 2.1
 
 orbs:
   markdown: hux/markdown@0.0.21
-  docker: hux/docker@0.0.1
+  docker: hux/docker@0.0.2
 
 jobs:
   build:
