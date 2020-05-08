@@ -4,6 +4,7 @@ version: 2.1
 
 orbs:
   docker: hux/docker@0.0.2
+  markdown: hux/markdown@0.0.22
 
 jobs:
   build:
@@ -26,9 +27,11 @@ workflows:
   build_and_test:
     jobs:
       - docker/lint
+      - markdown/lint
       - build:
           requires:
             - docker/lint
+            - markdown/lint
       - test:
           requires:
             - build
