@@ -2,6 +2,9 @@
 version: 2.1
 # Use a package of configuration called an orb.
 
+orbs:
+  markdown: hux/markdown@0.0.1
+
 jobs:
   docker_lint:
     working_directory: /root/project
@@ -12,18 +15,6 @@ jobs:
       - run: 
           name: Run hadolint on dockerfile
           command: hadolint Dockerfile
-  md_lint:
-    machine: true
-    steps:
-      - run:
-          name: Install md-proofer
-          command: |
-            wget https://github.com/felicianotech/md-proofer/releases/download/v0.3.0/md-proofer--v0.3.0--linux-amd64.tar.gz
-            tar xfz md-proofer-*.tar.gz
-            sudo chmod +x ./md-proofer
-      - run:
-          name: Test Markdown Files
-          command: ./md-proofer lint .
   build:
     machine: true
     steps:
@@ -44,11 +35,10 @@ workflows:
   build_and_test:
     jobs:
       - docker_lint
-      - md_lint
+      - markdown/lint
       - build:
           requires:
             - docker_lint
-            - md_lint
       - test:
           requires:
             - build
