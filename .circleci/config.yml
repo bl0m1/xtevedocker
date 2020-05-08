@@ -4,17 +4,9 @@ version: 2.1
 
 orbs:
   markdown: hux/markdown@0.0.9
+  docker: hux/docker@0.0.1
 
 jobs:
-  docker_lint:
-    working_directory: /root/project
-    docker:
-      - image: hadolint/hadolint
-    steps:
-      - checkout
-      - run: 
-          name: Run hadolint on dockerfile
-          command: hadolint Dockerfile
   build:
     machine: true
     steps:
@@ -34,7 +26,7 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      - docker_lint
+      - docker/lint
       - markdown/lint
       - build:
           requires:
