@@ -3,7 +3,7 @@ version: 2.1
 # Use a package of configuration called an orb.
 
 orbs:
-  markdown: hux/markdown@0.0.7
+  markdown: hux/markdown@0.0.8
 
 jobs:
   docker_lint:
