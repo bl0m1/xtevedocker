@@ -4,7 +4,7 @@
 * The configuration volume are moved and now located in `/home/xteve/.xteve`
 * All processes in the container are running as the user `xteve`
 
-# Xteve 2 docker container
+## Xteve 2 docker container
 
 * Exposed Ports: 34400
 * Volumes: `/home/xteve/.xteve`
