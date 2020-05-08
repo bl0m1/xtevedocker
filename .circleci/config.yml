@@ -30,7 +30,8 @@ workflows:
       - markdown/lint
       - build:
           requires:
-            - docker_lint
+            - docker/lint
+            - markdown/lint
       - test:
           requires:
             - build
