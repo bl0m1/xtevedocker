@@ -10,9 +10,10 @@
 * Volumes: `/home/xteve/.xteve`
 * FFmpeg and VLC buffer support
 
-## Create directories on host for xteve volumes
+## Create directories and set correct permissions on host for xteve volumes
 
 * `mkdir -p ~/xteve_home`
+* `sudo chown 65000:65000 ~/xteve_home`
 
 ## Usage (for isolating the container, recommended)
 
