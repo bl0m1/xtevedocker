@@ -5,7 +5,7 @@ MAINTAINER Hugo Blom hugo.blom1@gmail.com
 RUN apk add ca-certificates curl unzip
 
 # Add xteve binary
-COPY xteve_linux_amd64-v2.0.0.0001.zip /tmp/xteve_amd64.zip
+COPY xteve_linux_amd64-v2.2.0.0200.zip /tmp/xteve_amd64.zip
 
 # Unzip the Binary
 RUN unzip -o /tmp/xteve_amd64.zip -d /xteve
